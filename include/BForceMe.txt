@@ -1,0 +1,25 @@
+BForceMe
+MySQL:
+	BFaccess / BFpassw0rd=1620
+
+CREATE DATABASE IF NOT EXISTS BForceMe;
+USE DATABASE BForceMe;
+
+CREATE TABLE `BForceMe`.`users` (
+  `email` VARCHAR(100) NOT NULL,
+  `registeredon` DATETIME NULL COMMENT 'Date-time of the registration, to calculate who needed the least time to solve',
+  `tries` INT NOT NULL DEFAULT 0 COMMENT 'Each persons tries counter. It\'ll slow down the process, but I feel so curious...',
+  `lasttried` DATETIME NULL COMMENT 'I always like to know when we give up (and luckily why!)',
+  `lastkey` VARCHAR(20) NULL COMMENT 'Last key the user tried. Just to know if they are in the proper path...',
+  `solvedon` DATETIME NULL COMMENT 'Will many people solve it? Who will be the first doing so?',
+  `publickey` VARCHAR(16) NULL COMMENT 'Just some security checks (1/2): What was the public key when they solved it?',
+  `privatekey` VARCHAR(4) NULL COMMENT 'Just some security checks (2/2): What was the private key when they solved it?',
+  PRIMARY KEY (`email`));
+
+
+CREATE TABLE `BForceMe`.`publickey` (
+  `id` INT UNSIGNED NOT NULL DEFAULT 0,
+  `creation` DATETIME NOT NULL,
+  `publickey` VARCHAR(16) NOT NULL,
+  PRIMARY KEY (`id`));
+
