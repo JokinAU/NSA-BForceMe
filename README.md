@@ -1,7 +1,7 @@
 # NSA-BForceMe
-Pequeño proyecto que simula ser un sitio web protegido por una clave pública y otra privada.
+Pequeño proyecto que simula ser un sitio web protegido por una clave general y otra privada.
 
-Esas claves van renovándose con diferente periodicidad, y el objetivo es conseguir adivinar la combinación correcta de ambas en el momento adecuado.
+La clave general está encriptada dentro de un texto protegido por un certificado GPG débil, y va renovándose cada hora. El objetivo es conseguir adivinar la combinación correcta de ambas en el momento adecuado.
 
 Es, más que nada, un escenario en el que hace falta desarrollar algún tipo de aplicación/script que permita atacar por fuerza bruta. Como elección personal, creo que PHP, Perl, Python, Bash o similares pueden ser adecuados y suficientes. El tiempo lo dirá!
 
