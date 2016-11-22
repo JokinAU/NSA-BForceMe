@@ -2,10 +2,10 @@
 <html>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
-		<title>Public key</title>
+		<title>GPG keys</title>
 	</head>
-	<body><?php
-	require_once('../include/db.php');
-	echo NSA_getpublickey();
-?></body>
+	<body>
+		<p><a href="secret-key.gpg">secret-key.gpg</a></p>
+		<p><a href="secret-text.gpg">secret-text.gpg</a></p>
+</body>
 </html>
