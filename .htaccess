@@ -1,0 +1,3 @@
+<Directory "/include">
+  Deny from all
+</Directory>
