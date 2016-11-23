@@ -1,5 +1,5 @@
 <?php
-require_once('db-config.php');
+require_once('config.php');
 
 $mysqli = new mysqli($db_host, $db_user, $db_password, $db_dbname, $db_port, $db_socket) or die ('Can\'t connect to the DB'.mysqli_connect_error());
 

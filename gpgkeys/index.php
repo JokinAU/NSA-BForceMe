@@ -5,7 +5,8 @@
 		<title>GPG keys</title>
 	</head>
 	<body>
-		<p><a href="secret-key.gpg">secret-key.gpg</a></p>
+		<p><a href="private-key.gpg">private-key.gpg</a></p>
+		<p><a href="public-key.gpg">public-key.gpg</a></p>
 		<p><a href="secret-text.gpg">secret-text.gpg</a></p>
 </body>
 </html>

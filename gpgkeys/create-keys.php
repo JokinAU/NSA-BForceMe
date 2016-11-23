@@ -31,6 +31,8 @@ file_put_contents($secretfile, NSA_lipsum(32,'bytes',0));
 //Encrypt file
 $encryption = shell_exec('gpg --batch --yes -ar "'.$certid.'" --output secret-text.gpg --encrypt secret-text.txt');
 
+//DELETE PLAIN TEXT
+unlink($secretfile);
 //DELETE KEY FROM SYSTEM:
 //Run command to get the key's fingerprint
 $rawfingerprint = shell_exec('gpg --list-keys --fingerprint "'.$certid.'"');
