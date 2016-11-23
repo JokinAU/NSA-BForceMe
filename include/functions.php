@@ -1,4 +1,10 @@
 <?php
+function NSA_getdatetime () {
+	$date_utc = new \DateTime(null, new \DateTimeZone("UTC"));
+	return $date_utc->format("Y/m/d H:i:s");
+	//return gmdate("Y/m/d H:i:s");
+}
+
 //Given an array, return all the non repetitive permutations
 function permute($array) {
 	$length = sizeof($array);
@@ -22,7 +28,7 @@ function permute($array) {
 }
 
 //Return a string containin one char from each category
-function shortPaswd() {
+function NSA_shortPaswd() {
 	//Define the 4 different charsets in a single two dimmensional array
 	$charset = array(range('A', 'Z'), range('a', 'z'), range ('0', '9'), array('*', '/', '+', '-'));
 
@@ -39,4 +45,11 @@ function shortPaswd() {
 }
 //sample usage:
 //echo shortPaswd();
+
+function NSA_lipsum($amount=32, $what='bytes', $start=0) {
+	//amount: 1-n
+	//what: bytes,words,paras,lists
+	//start: 0=Start normally; 1=Start with "Lorem ipsum sit amet..."
+	return simplexml_load_file("http://www.lipsum.com/feed/xml?amount=$amount&what=$what&start=$start")->lipsum;
+}
 ?>

@@ -25,10 +25,4 @@ function NSA_getkeys() {
 		die('Error: Sorry, the website is experiencing problems, try again later');
 	return $result->fetch_assoc();
 }
-
-function NSA_getdatetime () {
-	$date_utc = new \DateTime(null, new \DateTimeZone("UTC"));
-	return $date_utc->format("Y/m/d H:i:s");
-	//return gmdate("Y/m/d H:i:s");
-}
 ?>

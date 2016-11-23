@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<p><?php
-			require_once('../include/db.php');
+			require_once('../include/functions.php');
 			echo '<strong>Hora del servidor</strong>: '.NSA_getdatetime().' (Zulu Time/UTC)';
 		?></p>
 	</body>
