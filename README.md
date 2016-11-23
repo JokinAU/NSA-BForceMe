@@ -25,9 +25,11 @@ $ mysql -u root -p
 
 mysql> CREATE USER 'BForceMeUser'@'localhost' IDENTIFIED BY 'Secr3t_P4ssW0rd*';
 
-mysql> GRANT ALL PRIVILEGES ON 'BForceMe'.* TO 'BForceUser'@'localhost';
+mysql> GRANT ALL PRIVILEGES ON BForceMe.* TO 'BForceUser'@'localhost' IDENTIFIED BY 'Secr3t_P4ssW0rd*';
 
 mysql> FLUSH PRIVILEGES;
+
+mysql> exit
 
 4) Copiar include/config.php-example en include/config.php, adaptando este último a sus datos
 

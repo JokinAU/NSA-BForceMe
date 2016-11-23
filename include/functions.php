@@ -1,7 +1,9 @@
 <?php
-function NSA_getdatetime () {
+function NSA_getdatetime() {
+	//v1:
 	$date_utc = new \DateTime(null, new \DateTimeZone("UTC"));
 	return $date_utc->format("Y/m/d H:i:s");
+	//v2:
 	//return gmdate("Y/m/d H:i:s");
 }
 

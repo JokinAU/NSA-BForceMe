@@ -33,8 +33,7 @@ DROP TABLE IF EXISTS `keystore`;
 CREATE TABLE `keystore` (
   `id` int(10) unsigned NOT NULL DEFAULT '0',
   `creation` datetime NOT NULL,
-  `publickey` varchar(16) NOT NULL,
-  `privatekey` varchar(4) NOT NULL,
+  `secret` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -47,15 +46,15 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `email` varchar(100) NOT NULL,
-  `alias` varchar(16) NOT NULL,
+  `email` varchar(100) NOT NULL COMMENT 'Private info, it''ll never be shared!',
+  `alias` varchar(16) NOT NULL COMMENT 'Public name for each user',
   `registeredon` datetime NOT NULL COMMENT 'Date-time of the registration, to calculate who needed the least time to solve',
-  `tries` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'Each persons tries counter. It''ll slow down the process, but I feel so curious...',
+  `privatekey` varchar(4) DEFAULT NULL COMMENT 'Each user has a unique password, to avoid solution sharing',
+  `tries` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'Each persons tries counter. I feel so curious...',
   `lasttried` datetime DEFAULT NULL COMMENT 'I always like to know when we give up (and luckily why!)',
+  `nexttry` datetime DEFAULT NULL COMMENT 'When will the user be allowed to try again? Just some kind of delay generator)',
   `lastkey` varchar(20) DEFAULT NULL COMMENT 'Last key the user tried. Just to know if they are in the proper path...',
   `solvedon` datetime DEFAULT NULL COMMENT 'Will many people solve it? Who will be the first doing so?',
-  `publickey` varchar(16) DEFAULT NULL COMMENT 'Just some security checks (1/2): What was the public key when they solved it?',
-  `privatekey` varchar(4) DEFAULT NULL COMMENT 'Just some security checks (2/2): What was the private key when they solved it?',
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -68,5 +67,3 @@ CREATE TABLE `users` (
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2016-11-23  7:57:33

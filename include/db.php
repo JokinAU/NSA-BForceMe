@@ -25,4 +25,13 @@ function NSA_getkeys() {
 		die('Error: Sorry, the website is experiencing problems, try again later');
 	return $result->fetch_assoc();
 }
+
+function NSA_storesecret($date, $string) {
+	global $mysqli;
+	$sql = "INSERT INTO keystore (creation,secret) VALUES ('$date','$string')";
+	$result = $mysqli->query($sql);
+        if ((!$result) or ($result->num_rows === 0))
+                die('Error: Sorry, the website is experiencing problems, try again later');
+        return True;
+}
 ?>
