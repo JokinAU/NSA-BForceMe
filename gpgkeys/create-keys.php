@@ -34,7 +34,7 @@ $output = shell_exec("gpg -a --export-secret-keys '$certid' > $privatefile");
 //Create secret sentence
 $secretsentence = NSA_lipsum(32,'bytes',0);
 //Store secret sentence to DB
-NSA_storesecret($secretsentence);
+NSA_setpublicpass($secretsentence);
 //Create secret file
 file_put_contents($secretfileplain, $secretsentence);
 //Encrypt file

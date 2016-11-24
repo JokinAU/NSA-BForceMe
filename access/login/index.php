@@ -35,9 +35,9 @@
 			echo 'Public and private keys are ok, you did it!'."\n";
 			$subject = 'Reto NSA: CONSEGUIDO!';
 			$message = $email.",\t\n".
-				'Felicidades! Has conseguido vulnerar el reto de http://nsa.develdevil.net/'."\t\n".
-				'La claves que has utilizado son:'."\t\n".
-				'-public: '.$publickey."\t\n".
+				'Felicidades, has conseguido vulnerar el reto de la NSA!'."\t\n".
+				'La combinación que has utilizado es:'."\t\n".
+				'-public: '.$publicpass."\t\n".
 				'-private: '.$privatekey."\t\n".
 				'Gracias por participar, y por tu buen trabajo!'."\t\n".
 				'Mensaje enviado el '.NSA_getdatetime()." (Zulu Time/UTC)\t\n";

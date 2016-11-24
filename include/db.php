@@ -8,28 +8,18 @@ if ($mysqli->connect_errno):
 	die('Error: Sorry, the website is experiencing problems'."\n");
 endif;
 
-function NSA_getpublickey() {
+function NSA_setpublicpass($string) {
 	global $mysqli;
-	$sql = 'SELECT publickey FROM keystore ORDER BY creation DESC LIMIT 1';
-	$result = $mysqli->query($sql);
-	if ((!$result) or ($result->num_rows === 0))
-		die('Error: Sorry, the website is experiencing problems, try again later'."\n");
-	$keyinfo = $result->fetch_assoc();
-	return $keyinfo['publickey'];
-}
-
-function NSA_storesecret($string) {
-	global $mysqli;
-	$sql = "INSERT INTO keystore (secret) VALUES ('$string')";
+	$sql = "INSERT INTO keystore (publicpass) VALUES ('$string')";
 	$result = $mysqli->query($sql);
 	if ((!$result) or ($result->num_rows === 0))
 		die('Error: Sorry, the website is experiencing problems, try again later'."\n");
 	return True;
 }
 
-function NSA_getsecret() {
+function NSA_getpublicpass() {
 	global $mysqli;
-	$sql = 'SELECT secret FROM keystore ORDER BY creation DESC LIMIT 1';
+	$sql = 'SELECT publicpass FROM keystore ORDER BY creation DESC LIMIT 1';
 	$result = $mysqli->query($sql);
 	if ((!$result) or ($result->num_rows === 0))
 		die('Error: Sorry, the website is experiencing problems, try again later'."\n");
