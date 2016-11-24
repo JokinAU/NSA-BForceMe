@@ -1,1 +1,1 @@
-mysqldump -u root -p --no-data --databases BForceMe > BForceMeSchema.sql
+mysqldump -h localhost -u root -p --no-data --databases BForceMe > BForceMeDump-Schema.sql

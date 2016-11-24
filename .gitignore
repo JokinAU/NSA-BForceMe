@@ -1,2 +1,3 @@
 include/config.php
+include/BForceMeDump-custom.sh
 USB/*.gpg
