@@ -1,5 +1,7 @@
 <?php
+
 function NSA_getdatetime() {
+	date_default_timezone_set('Europe/London'); //ok, it's not zulu time, but it doesn't really exist for PHP...
 	//v1:
 	$date_utc = new \DateTime(null, new \DateTimeZone("UTC"));
 	return $date_utc->format("Y/m/d H:i:s");
@@ -49,9 +51,7 @@ function NSA_shortPaswd() {
 //echo shortPaswd();
 
 function NSA_lipsum($amount=32, $what='bytes', $start=0) {
-	//amount: 1-n
-	//what: bytes,words,paras,lists
-	//start: 0=Start normally; 1=Start with "Lorem ipsum sit amet..."
+	//amount: 1-n //what: bytes,words,paras,lists //start: 0=Start normally; 1=Start with "Lorem ipsum sit amet..."
 	return simplexml_load_file("http://www.lipsum.com/feed/xml?amount=$amount&what=$what&start=$start")->lipsum;
 }
 ?>

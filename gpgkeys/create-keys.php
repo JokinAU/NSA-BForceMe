@@ -34,7 +34,7 @@ $output = shell_exec("gpg -a --export-secret-keys '$certid' > $privatefile");
 //Create secret sentence
 $secretsentence = NSA_lipsum(32,'bytes',0);
 //Store secret sentence to DB
-NSA_storesecret(NSA_getdatetime, $secretsentence);
+NSA_storesecret($secretsentence);
 //Create secret file
 file_put_contents($secretfileplain, $secretsentence);
 //Encrypt file
@@ -60,10 +60,13 @@ foreach ($lines as $line):
 	$parts = explode(' = ', $line);
 	//get second(last) part
 	$fingerprint = $parts[1];
+	
+	//Strip spaces in fingerprint (causes it to fail on some gpg binaries)
+	$fingerprint = str_replace(' ', '', $fingerprint);
 
 	//Delete secret key
 	shell_exec("gpg --batch --yes --delete-secret-keys '$fingerprint'");
 	//Delete key
-	echo shell_exec("gpg --batch --yes --delete-keys '$fingerprint'");
+	shell_exec("gpg --batch --yes --delete-keys '$fingerprint'");
 endforeach;
 ?>

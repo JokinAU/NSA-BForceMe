@@ -1,8 +1,8 @@
 <?php
-$db_host = 'localhost';
+$db_host = 'mysql.develdevil.net';
 $db_port = 3306;
 $db_socket = '';
-$db_user = 'BForceMeUser';
+$db_dbname = 'bforceme';
+$db_user = 'bforcemeuser';
 $db_password = 'Secr3t_P4ssW0rd*';
-$db_dbname = 'BForceMe';
 ?>

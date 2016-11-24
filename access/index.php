@@ -8,16 +8,20 @@
 		<form name="form" action="login/">
 		<table align="center">
 			<tr>
+				<td>alias</td>
+				<td><input type="text" name="alias" maxlength="16" title="Max 16"></td>
+			</tr>
+			<tr>
 				<td>email</td>
-				<td><input type="text" name="email" maxlength="100"></td>
+				<td><input type="text" name="email" maxlength="100" title="Max 100"></td>
 			</tr>
 			<tr>
-				<td>public key</td>
-				<td><input type="text" name="publickey" maxlength="16"></td>
+				<td>public password</td>
+				<td><input type="text" name="publicpass" maxlength="32" title="Max 32"></td>
 			</tr>
 			<tr>
-				<td>private key</td>
-				<td><input type="text" name="privatekey" maxlength="4"></td>
+				<td>particular key</td>
+				<td><input type="text" name="privatekey" maxlength="4" title="Max 4"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="submit" value="Submit"></td>
