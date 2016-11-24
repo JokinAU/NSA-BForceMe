@@ -21,7 +21,7 @@
 			</tr>
 			<tr>
 				<td>particular key</td>
-				<td><input type="text" name="privatekey" maxlength="4" title="Max 4"></td>
+				<td><textarea name="privatepass" cols="4" rows="5" maxlength="750"></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="submit" value="Submit"></td>
