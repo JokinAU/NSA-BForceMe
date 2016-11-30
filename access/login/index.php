@@ -6,32 +6,47 @@
 	</head>
 	<body>
 		<?php
-		function checkKeyChars($string) {
+		function checkPassChars($string) {
 			$validchars = array_merge(range('a','z'),
 											range('A','Z'),
 											array_map('strval', range('0','9')),
-											str_split('*/+-'));
+											str_split('*/+-. '));
 			foreach (str_split($string) as $char)
 				if (!in_array($char, $validchars))
 					return False;
 			return $string;
 		}
+		
+		//sanitize alias
+		$alias = filter_input(INPUT_GET, 'alias', FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW || FILTER_FLAG_STRIP_HIGH || FILTER_FLAG_ENCODE_AMP);
+	if ((!$alias) or (strlen($alias)>16))
+			die('Error: Alias is not valid. You are not tampering with it, ARE YOU?!?<br />');
 
-		$email = filter_input(INPUT_GET, 'email', FILTER_VALIDATE_EMAIL);
+		//sanitize email removing dangerous characters
+		$email = filter_input(INPUT_GET, 'email', FILTER_SANITIZE_EMAIL);
+		//then check if it looks like an email address
+		$email = filter_var($email, FILTER_VALIDATE_EMAIL);
 		if ((!$email) or (strlen($email)>100))
 			die('Error: Email is not valid. You are not tampering with it, ARE YOU?!?<br />');
 
-		$publickey = filter_input(INPUT_GET, 'publickey', FILTER_CALLBACK, array('options'=>'checkKeyChars'));
-		if ((!$publickey) or (strlen($publickey)>16))
-			die('Error: Public key is not valid. You are not tampering with it, ARE YOU?!?<br />');
+		$publicpass = filter_input(INPUT_GET, 'publicpass', FILTER_CALLBACK, array('options'=>'checkPassChars'));
+		if ((!$publicpass) or (strlen($publicpass)>32))
+			die('Error: Public pass is not valid. You are not tampering with it, ARE YOU?!?<br />');
 
-		$privatekey = filter_input(INPUT_GET, 'privatekey', FILTER_CALLBACK, array('options'=>'checkKeyChars'));
-		if ((!$privatekey) or (strlen($privatekey)>4))
-			die('Error: Private key is not valid. You are not tampering with it, ARE YOU?!?<br />');
+		$privatepass = filter_input(INPUT_GET, 'privatepass', FILTER_CALLBACK, array('options'=>'checkPassChars'));
+		if ((!$privatepass) or (strlen($privatepass)>4))
+			die('Error: Private pass is not valid. You are not tampering with it, ARE YOU?!?<br />');
 
+		//Get public key
 		require_once('../../include/db.php');
-		$NSA_keys = NSA_getkeys();
-		if (($NSA_keys['publickey']==$publickey) and ($NSA_keys['privatekey']==$privatekey)):
+		$NSA_key = NSA_getpublicpass();
+		
+		NSA_createupdateuser($alias,$email,$privatepass);
+		die('Still testing. Try again in some days...');
+		
+		$NSA_privatekey = NSA_getprivatepass();
+		
+		if ($NSA_key['publicpass']==$publickey):
 			echo 'Public and private keys are ok, you did it!'."\n";
 			$subject = 'Reto NSA: CONSEGUIDO!';
 			$message = $email.",\t\n".
