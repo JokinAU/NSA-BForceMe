@@ -14,7 +14,7 @@ function NSA_setpublicpass($publicpass) {
 	$sql = "INSERT INTO keystore (publicpass) VALUES ('$publicpass')";
 	$result = $mysqli->query($sql);
 	if ((!$result) or ($result->num_rows === 0))
-		die('Error: Sorry, the website is experiencing problems, try again later'."\n");
+		die('Error: Sorry, the website is experiencing problems, try again later (setpublicpass)'."\n");
 	return True;
 }
 
@@ -23,7 +23,7 @@ function NSA_getpublicpass() {
 	$sql = 'SELECT publicpass FROM keystore ORDER BY creation DESC LIMIT 1';
 	$result = $mysqli->query($sql);
 	if ((!$result) or ($result->num_rows === 0))
-		die('Error: Sorry, the website is experiencing problems, try again later'."\n");
+		die('Error: Sorry, the website is experiencing problems, try again later (getpublicpass)'."\n");
 	return $result->fetch_assoc();
 }
 
@@ -39,8 +39,7 @@ function NSA_createupdateuser($alias,$email,$privatepass) {
 echo "sql: $sql";
 	$result = $mysqli->query($sql);
 	if ((!$result) or ($result->num_rows === 0))
-		die('Error: Sorry, the website is experiencing problems, try again later'."\n");
+		die('Error: Sorry, the website is experiencing problems, try again later (createupdateuser)'."\n");
 	return True;
 }
-
 ?>

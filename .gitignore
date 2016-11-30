@@ -1,3 +1,4 @@
 include/config.php
 include/BForceMeDump-custom.sh
+gpgkeys/create-keys.answers
 USB/*.gpg
