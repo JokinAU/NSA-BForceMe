@@ -7,7 +7,7 @@ Name-Real: Secret Password
 Name-Comment: best secret agents will never be known
 Name-Email: info@develdevil.net
 Expire-Date: 0
-Passphrase: r6T*
+Passphrase: -2pC
 # Do a commit here, so that we can later print "done" :-)
 %commit
 %echo done

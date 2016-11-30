@@ -1,5 +1,4 @@
 <?php
-
 function NSA_getdatetime() {
 	date_default_timezone_set('Europe/London'); //ok, it's not zulu time, but it doesn't really exist for PHP...
 	//v1:
@@ -54,4 +53,16 @@ function NSA_lipsum($amount=32, $what='bytes', $start=0) {
 	//amount: 1-n //what: bytes,words,paras,lists //start: 0=Start normally; 1=Start with "Lorem ipsum sit amet..."
 	return simplexml_load_file("http://www.lipsum.com/feed/xml?amount=$amount&what=$what&start=$start")->lipsum;
 }
+
+function NSA_checkValidChars($string) {
+	$validchars = array_merge(range('a','z'),
+									range('A','Z'),
+									array_map('strval', range('0','9')),
+									str_split('*/+-. '));
+	foreach (str_split($string) as $char)
+		if (!in_array($char, $validchars))
+			return False;
+	return $string;
+}
+
 ?>
